@@ -25,6 +25,7 @@ async function fetchData(url)
 }
 searchButton.addEventListener('click',function()
 {
+    localStorage.clear();
     if(songSearch.value)
     {
         fetchData(`https://spotify23.p.rapidapi.com/search/?q=${songSearch.value}&type=multi&offset=0&limit=10&numberOfTopResults=5`);
@@ -45,15 +46,18 @@ function processSong(info)
             if(songObject[i].data.name)
             {
                 console.log(songObject[i].data.name);
+                localStorage.setItem(`songName-${i+1}`,songObject[i].data.name);
             }
             if(songObject[i].data.uri)
             {
                 console.log(songObject[i].data.uri);
+                localStorage.setItem(`songUri-${i+1}`,songObject[i].data.uri);
             }
             if(songObject[i].data.coverArt && songObject[i].data.coverArt.sources[0])
             {
                 var songPoster= songObject[i].data.coverArt.sources[0].url;
                 console.log(songPoster);
+                localStorage.setItem(`songPoster-${i+1}`,songPoster);
             }
         }
     }
