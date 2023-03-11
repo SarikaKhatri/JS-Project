@@ -61,4 +61,7 @@ function processSong(info)
             }
         }
     }
+    window.location.href="index2.html";
+    localStorage.setItem('songLength',songObject.length);
+    createDomDynamically();
 }
